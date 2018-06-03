@@ -61,10 +61,12 @@ export function EmployeeApi(app: Express, db: MongoClient) {
                 email: req.body.email,
                 salary: req.body.salary,
                 dob: req.body.dob
+            }, {
+                upsert: true
             }).then((response) => {
                 res.send(response)
             }).catch((err) => res.status(500).send(err))
     });
 
-    
+
 }
