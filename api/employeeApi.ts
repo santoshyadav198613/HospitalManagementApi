@@ -68,5 +68,13 @@ export function EmployeeApi(app: Express, db: MongoClient) {
             }).catch((err) => res.status(500).send(err))
     });
 
-
+    app.delete('/api/employee/:id', (req, res) => {
+        let id = parseInt(req.params.id);
+        db.db().collection('employee').findOneAndDelete({
+            id: id
+        }).then((response) => {
+            console.log(response);
+            res.send(response);
+        })
+    });
 }
